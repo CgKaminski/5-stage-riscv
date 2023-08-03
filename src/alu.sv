@@ -23,10 +23,10 @@ module alu(input logic [31:0] A, B,
   assign result = (alu_control[2]) ? slt_result : logic_adder_result;
   
   // Overflow flag
-  assign V = ((A[31] == B[31] == alu_control[0]) || (A[31] == ~B[31] == alu_control[0])) && (A[31] != adder_result[31]) && ~alu_control[1];
+  assign V = (((A[31] == B[31]) && (alu_control[0] == 0)) || ((A[31] != B[31]) && (alu_control[0] == 1))) && (A[31] != adder_result[31]) && ~alu_control[1];
 
   // Carry flag
-  assign C = ~alu_control[1] && carry;
+  assign C = ~alu_control[1] && ~alu_control[2] && carry;
 
   // Negative flag
   assign N = result[31];
