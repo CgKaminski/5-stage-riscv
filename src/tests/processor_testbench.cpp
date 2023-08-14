@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
                 return 0;
             } else if (top->data_adr!= 96) {
                 std::cout << top->data_adr << std::endl;
+                std::cout << top->write_data << std::endl;
                 std::cout << "Simulation failed" << std::endl;
                 delete top;
                 return 1;
