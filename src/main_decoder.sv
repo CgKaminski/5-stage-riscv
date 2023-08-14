@@ -4,8 +4,8 @@ module main_decoder(input logic [6:0] op,
 
   logic [10:0] controls;
 
-  assign (reg_write, imm_src, alu_src, mem_write, result_src, 
-          alu_op, branch, jump) = controls;
+  assign {reg_write, imm_src, alu_src, mem_write, result_src, 
+          alu_op, branch, jump} = controls;
 
   always_comb
     case(op)
