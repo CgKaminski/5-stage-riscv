@@ -10,9 +10,9 @@ int main(int argc, char** argv) {
     // Initialize signals
     top->clk = 0;
     top->reset = 1;
-    top->WriteData = 0;
-    top->DataAdr = 0;
-    top->MemWrite = 0;
+    top->write_data= 0;
+    top->data_adr= 0;
+    top->mem_write= 0;
 
     // Simulate
     for (int i = 0; i < 100; ++i) {
@@ -29,12 +29,13 @@ int main(int argc, char** argv) {
         top->eval(); // Evaluate the model
 
         // Check results
-        if (top->MemWrite) {
-            if (top->DataAdr == 100 && top->WriteData == 25) {
+        if (top->mem_write) {
+            if (top->data_adr== 100 && top->write_data== 25) {
                 std::cout << "Simulation succeeded" << std::endl;
                 delete top;
                 return 0;
-            } else if (top->DataAdr != 96) {
+            } else if (top->data_adr!= 96) {
+                std::cout << top->data_adr << std::endl;
                 std::cout << "Simulation failed" << std::endl;
                 delete top;
                 return 1;
