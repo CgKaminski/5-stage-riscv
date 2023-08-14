@@ -15,7 +15,7 @@ module alu_decoder(input logic opb5, funct7b5,
         3'b010: alu_control = 3'b101;
         3'b110: alu_control = 3'b011;
         3'b111: alu_control = 3'b010;
-        default =: alu_control = 3'bxxx;
+        default : alu_control = 3'bxxx;
       endcase
     endcase
 
