@@ -3,8 +3,8 @@ module imem(input logic [31:0] a,
 
   logic [31:0] RAM[63:0];
   initial
-    $readmemh("riscv.test", RAM);
-  assign rd = RAM[a[31:2]];
+    $readmemh("riscvtest.txt", RAM);
+  assign rd = RAM[a[7:2]];
 
 endmodule
 
