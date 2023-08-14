@@ -15,16 +15,18 @@ module datapath(input logic clk, reset, pc_src, alu_src, reg_write,
   assign pc_plus_4 = pc + 4;
   assign pc_target = pc + imm_exit;
   assign pc_next = (pc_src == 0) ? pc_plus_4 : pc_target;
+  extend ext(instruction[31:7], imm_src, imm_exit);
 
   // register file logic
-  regfile regfile(clk, reg_write, instruction[19:15], instruction[24:20], 
-                  instruction[11:7], result, src_a, write_data);
-  assign imm_exit = {instruction[31:7], 7'b0000000};
+  regfile regfile(.clk(clk), .we3(reg_write), .a1(instruction[19:15]), 
+                  .a2(instruction[24:20]), .a3(instruction[11:7]), .wd3(result),
+                  .rd1(src_a), .rd2(write_data));
 
   // alu logic
   assign src_b = (alu_src == 0) ? write_data : imm_exit;
   alu alu(.A(src_a), .B(src_b), .alu_control(alu_control), .result(alu_result),
           .Z(zero), .N(negative), .C(carry), .V(overflow));
+
   assign result = result_src[1] ? pc_plus_4 : (result_src[0] ? read_data : alu_result);
 
 endmodule
