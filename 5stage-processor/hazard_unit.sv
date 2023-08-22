@@ -11,12 +11,14 @@ module hazard_unit(input  logic [4:0] rs1_e_i,
                    input  logic [4:0] rs1_d_i,
                    input  logic [4:0] rs2_d_i,
                    input  logic [4:0] rd_e_i,
+                   input  logic       pc_src_e_i,
                    output logic [1:0] forward_a_o,
                    output logic [1:0] forward_b_o,
                    output logic       stall_f_o,
                    output logic       stall_d_o,
                    output logic       flush_e_o,
-                   output logic       result_src_e_o);
+                   output logic       result_src_e_o,
+                   output logic       flush_d_o);
 
 
   // ================
@@ -49,10 +51,20 @@ module hazard_unit(input  logic [4:0] rs1_e_i,
   logic lw_stall; 
 
   always_comb begin
-    assign lw_stall = result_src_e_o & ((rs1_d_i == rd_e_i) || (rs2_d_i == rd_e_i));
+    assign lw_stall = result_src_e_o && ((rs1_d_i == rd_e_i) || (rs2_d_i == rd_e_i));
     assign stall_f_o = lw_stall;
     assign stall_d_o = lw_stall;
     assign flush_e_o = lw_stall;
   end  
+
+
+  // ================
+  // Control Hazard (flushing) Unit
+  // ================
+
+    always_comb begin
+        assign flush_d_o = pc_src_e_i;
+        assign flush_e_o = lw_stall || pc_src_e_i;
+    end
 
 end module  
