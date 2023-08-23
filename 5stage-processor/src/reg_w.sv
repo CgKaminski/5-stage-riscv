@@ -1,3 +1,6 @@
+/* 
+ * Register file for Memory -> Writeback stage
+ */
 module reg_w(input  logic        reg_write_m_i,
              input  logic [1:0]  result_src_m_i,
              input  logic [31:0] alu_result_m_i,
