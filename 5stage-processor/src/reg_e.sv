@@ -1,3 +1,6 @@
+/*
+ * Register file for Decode -> Execute stage
+ */
 module reg_e(input  logic        ckl_i,
              input  logic        clr_i,
              input  logic        reg_write_d_i,
