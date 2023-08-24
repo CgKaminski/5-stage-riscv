@@ -8,18 +8,20 @@
  *       funct7b5_i ->  instruction[30]
  */
 
-module controller(input  logic [6:0] op_i,
-                  input  logic [2:0] funct3_i,
-                  input  logic       funct7b5_i,
-                  input  logic       zero_i,
-                  output logic       pc_src_o,
-                  output logic       reg_write_o,
-                  output logic [1:0] imm_src_o, 
-                  output logic       alu_src_o,
-                  output logic       mem_write_o,
-                  output logic [1:0] result_src_o,
-                  output logic       jump_o,
-                  output logic [2:0] alu_control_o);
+module controller(
+  input  logic [6:0] op_i,
+  input  logic [2:0] funct3_i,
+  input  logic       funct7b5_i,
+  input  logic       zero_i,
+  output logic       reg_write_o,
+  output logic [1:0] result_src_o,
+  output logic       mem_write_o,
+  output logic       jump_o,
+  output logic       branch_o,
+  output logic [2:0] alu_control_o,
+  output logic       alu_src_o,
+  output logic [1:0] imm_src_o);
+
 
   // Misc. signals
   logic [1:0] alu_op;
