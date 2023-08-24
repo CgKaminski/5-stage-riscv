@@ -10,7 +10,7 @@ module regfile(
 
   logic [31:0] rf[31:0];
   
-  always_ff @(posedge clk) begin
+  always_ff @(negedge clk_i) begin
     if (we3_i) rf[a3_i] <= wd3_i;
   end
 
@@ -18,4 +18,3 @@ module regfile(
   assign rd2_o = (a2_i != 0) ? rf[a2_i] : 0;
 
 endmodule
-
