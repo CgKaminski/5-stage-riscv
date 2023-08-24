@@ -16,7 +16,7 @@ module reg_e(input  logic        ckl_i,
              input  logic [4:0]  rs1_d_i,
              input  logic [4:0]  rs2_d_i,
              input  logic [4:0]  rd_d_i,
-             input  logic [31:0] imm_d_i,
+             input  logic [31:0] imm_ext_d_i,
              input  logic [31:0] pc_plus4_d_i,
              output logic        reg_write_e_o,
              output logic [1:0]  result_src_e_o,
@@ -31,7 +31,7 @@ module reg_e(input  logic        ckl_i,
              output logic [4:0]  rs1_e_o,
              output logic [4:0]  rs2_e_o,
              output logic [4:0]  rd_e_o,
-             output logic [31:0] imm_e_o,
+             output logic [31:0] imm_ext_e_o,
              output logic [31:0] pc_plus4_e_o);
 
   always_ff (posedge clk_i) begin
@@ -65,7 +65,7 @@ module reg_e(input  logic        ckl_i,
       rs1_e_o <= rs1_d_i;
       rs2_e_o <= rs2_d_i;
       rd_e_o <= rd_d_i;
-      imm_e_o <= imm_d_i;
+      imm_ext_e_o <= imm_ext_d_i;
       pc_plus4_e_o <= pc_plus4_d_i;
   end
 
