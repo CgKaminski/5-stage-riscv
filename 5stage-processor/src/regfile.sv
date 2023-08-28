@@ -9,9 +9,11 @@ module regfile(
   output logic [31:0] rd2_o);
 
   logic [31:0] rf[31:0];
-  
+   
   always_ff @(negedge clk_i) begin
-    if (we3_i) rf[a3_i] <= wd3_i;
+    if (we3_i) begin  
+      rf[a3_i] <= wd3_i;
+    end
   end
 
   assign rd1_o = (a1_i != 0) ? rf[a1_i] : 0;
