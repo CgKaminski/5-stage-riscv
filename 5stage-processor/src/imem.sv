@@ -9,7 +9,7 @@ module imem(
 
   // Reading from test file and storing in ram
   initial 
-    $readmemh("riscvtest.txt", ram);
-  assign rd = ram[a[31:2]];
+    $readmemh("src/riscvtest.txt", ram);
+  assign rd_o = ram[a_i[31:2]];
 
 endmodule 
