@@ -53,7 +53,7 @@ module hazard_unit(input  logic [4:0] rs1_e_i,
   logic lw_stall; 
 
   always_comb begin
-    assign lw_stall = result_src_e_i && ((rs1_d_i == rd_e_i) || (rs2_d_i == rd_e_i));
+    assign lw_stall = result_src_e_i & ((rs1_d_i == rd_e_i) | (rs2_d_i == rd_e_i));
     assign stall_f_o = lw_stall;
     assign stall_d_o = lw_stall;
   end  
