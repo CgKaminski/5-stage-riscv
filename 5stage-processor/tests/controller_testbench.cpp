@@ -16,13 +16,12 @@ int main(int argc, char** argv) {
   top->op_i       = 0b0110011;
   top->funct3_i   = 0b000;
   top->funct7b5_i = 0;
-  top->zero_i     = 0;
   top->eval();
-  if (top->pc_src_o != 0b0 || top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
+  if (top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
       top->result_src_o != 0b00 || top->jump_o != 0b0 || top->alu_control_o != 0b000)
   {
     std::cout << "ERROR TEST #1" << std::endl;
-    std::cout << "pc_src ="        << top->pc_src_o      << 
+    std::cout << 
                  " reg_write = "   << top->reg_write_o   << 
                  " alu_src = "     << top->alu_src_o     << 
                  " mem_write = "   << top->mem_write_o   << 
@@ -41,13 +40,12 @@ int main(int argc, char** argv) {
   top->op_i       = 0b0010011;
   top->funct3_i   = 0b000;
   top->funct7b5_i = 0;
-  top->zero_i     = 1;
   top->eval();
-  if (top->pc_src_o != 0b0 || top->reg_write_o != 1 || top->alu_src_o != 0b1 || top->mem_write_o != 0b0 || 
+  if (top->reg_write_o != 1 || top->alu_src_o != 0b1 || top->mem_write_o != 0b0 || 
       top->result_src_o != 0b00 || top->jump_o != 0b0 || top->alu_control_o != 0b000)
   {
     std::cout << "ERROR TEST #2" << std::endl;
-    std::cout << "pc_src ="        << top->pc_src_o      << 
+    std::cout << 
                  " reg_write = "   << top->reg_write_o   << 
                  " alu_src = "     << top->alu_src_o     << 
                  " mem_write = "   << top->mem_write_o   << 
@@ -66,13 +64,12 @@ int main(int argc, char** argv) {
     top->op_i       = 0b0110011;
     top->funct3_i   = 0b110;
     top->funct7b5_i = 0;
-    top->zero_i     = 0;
     top->eval();
-    if (top->pc_src_o != 0b0 || top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
+    if ( top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
         top->result_src_o != 0b00 || top->jump_o != 0b0 || top->alu_control_o != 0b011)
     {
       std::cout << "ERROR TEST #3 (or)" << std::endl;
-      std::cout << "pc_src ="        << top->pc_src_o      << 
+      std::cout << 
                    " reg_write = "   << top->reg_write_o   << 
                    " alu_src = "     << top->alu_src_o     << 
                    " mem_write = "   << top->mem_write_o   << 
@@ -90,13 +87,12 @@ int main(int argc, char** argv) {
       top->op_i       = 0b0110011;
       top->funct3_i   = 0b010;
       top->funct7b5_i = 0;
-      top->zero_i     = 0;
       top->eval();
-      if (top->pc_src_o != 0b0 || top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
+      if ( top->reg_write_o != 1 || top->alu_src_o != 0b0 || top->mem_write_o != 0b0 || 
           top->result_src_o != 0b00 || top->jump_o != 0b0 || top->alu_control_o != 0b101)
       {
         std::cout << "ERROR TEST #4 (slt)" << std::endl;
-        std::cout << "pc_src ="        << top->pc_src_o      << 
+        std::cout <<  
                      " reg_write = "   << top->reg_write_o   << 
                      " alu_src = "     << top->alu_src_o     << 
                      " mem_write = "   << top->mem_write_o   << 
