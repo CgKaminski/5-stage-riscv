@@ -12,7 +12,6 @@ module controller(
   input  logic [6:0] op_i,
   input  logic [2:0] funct3_i,
   input  logic       funct7b5_i,
-  input  logic       zero_i,
   output logic       reg_write_o,
   output logic [1:0] result_src_o,
   output logic       mem_write_o,
@@ -25,11 +24,18 @@ module controller(
 
   // Misc. signals
   logic [1:0] alu_op;
-  logic       branch;
 
   // Control signal output
   logic [10:0] controls;
-  assign {reg_write_o, imm_src_o, alu_src_o, mem_write_o, result_src_o, branch, alu_op, jump_o} = controls;
+  // assign {reg_write_o, imm_src_o, alu_src_o, mem_write_o, result_src_o, branch_o, alu_op, jump_o} = controls;
+  assign reg_write_o  = controls[10];
+  assign imm_src_o    = controls[9:8];
+  assign alu_src_o    = controls[7];
+  assign mem_write_o  = controls[6];
+  assign result_src_o = controls[5:4];
+  assign branch_o     = controls[3];
+  assign alu_op       = controls[2:1];
+  assign jump_o       = controls[0];
 
   // Main decoder
 
@@ -67,8 +73,5 @@ module controller(
           default:  alu_control_o = 3'bxxx;  // (invalid)
         endcase
     endcase
-
-  // Branch handling
-  assign pc_src_o = (branch & zero_i) | jump_o;
 
 endmodule
