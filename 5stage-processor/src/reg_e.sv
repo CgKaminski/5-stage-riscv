@@ -1,7 +1,7 @@
 /*
  * Register file for Decode -> Execute stage
  */
-module reg_e(input  logic        ckl_i,
+module reg_e(input  logic        clk_i,
              input  logic        clr_i,
              input  logic        reg_write_d_i,
              input  logic [1:0]  result_src_d_i,
@@ -34,8 +34,8 @@ module reg_e(input  logic        ckl_i,
              output logic [31:0] imm_ext_e_o,
              output logic [31:0] pc_plus4_e_o);
 
-  always_ff (posedge clk_i) begin
-    if (clr_i) // All output get set to 0 (with their respected width)
+  always_ff @(posedge clk_i) begin
+    if (clr_i) begin // All output get set to 0 (with their respected width)
       reg_write_e_o <= 1'b0;
       result_src_e_o <= 2'b0;
       mem_write_e_o <= 1'b0;
@@ -49,9 +49,10 @@ module reg_e(input  logic        ckl_i,
       rs1_e_o <= 5'b0;
       rs2_e_o <= 5'b0;
       rd_e_o <= 5'b0;
-      imm_e_o <= 32'b0;
+      imm_ext_e_o <= 32'b0;
       pc_plus4_e_o <= 32'b0;
-    else
+    end
+    else begin
       reg_write_e_o <= reg_write_d_i;
       result_src_e_o <= result_src_d_i;
       mem_write_e_o <= mem_write_d_i;
@@ -67,6 +68,7 @@ module reg_e(input  logic        ckl_i,
       rd_e_o <= rd_d_i;
       imm_ext_e_o <= imm_ext_d_i;
       pc_plus4_e_o <= pc_plus4_d_i;
+    end
   end
 
 endmodule

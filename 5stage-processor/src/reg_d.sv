@@ -13,19 +13,22 @@ module reg_d(input  logic        en_i,
              output logic [31:0] pc_d_o,
              output logic [31:0] pc_plus4_d_o);
 
-  always_ff(posedge clk_i) begin
-    if (clr_i)                                                                 // Flushing
+  always_ff @(posedge clk_i) begin
+    if (clr_i) begin                                                          
       instr_d_o <= 0;
       pc_d_o <= 0;
       pc_plus4_d_o <= 0;
-    else if (en_i)                                                             // Stalling                     
+    end
+    else if (en_i) begin                                                      
       instr_d_o <= instr_d_o;
       pc_d_o <= pc_d_o;
       pc_plus4_d_o <= pc_plus4_d_o;
-    else                                                                       // Normal operation         
+    end
+    else begin
       instr_d_o <= rd_f_i;
       pc_d_o <= pc_f_i;
       pc_plus4_d_o <= pc_plus4_f_i;
+    end
 
   end
 
