@@ -42,7 +42,7 @@ To explore and experiment with the pipelined processor:
 
 ## Generating Machine Code
 
-The project processor uses RISC-V architecture and ISA, therefore most standard RISC-V assemblers should produce usable machine code. One of my favorite online assemblers can be found at [https://riscvasm.lucasteske.dev/#].
+The project processor uses RISC-V ISA, therefore most standard RISC-V assemblers should produce usable machine code (so long that unsupported instructions are not used). One of my favorite online assemblers can be found at [https://riscvasm.lucasteske.dev/#].
 
 ## Contributing
 
